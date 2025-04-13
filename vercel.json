@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "build/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/build/assets/$1"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/build/static/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/build/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/build/manifest.json"
+    },
+    {
+      "src": "/logo192.png",
+      "dest": "/build/logo192.png"
+    },
+    {
+      "src": "/logo512.png",
+      "dest": "/build/logo512.png"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/build/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "REACT_APP_FIREBASE_API_KEY": "@firebase_api_key",
+    "REACT_APP_FIREBASE_AUTH_DOMAIN": "@firebase_auth_domain",
+    "REACT_APP_FIREBASE_PROJECT_ID": "@firebase_project_id",
+    "REACT_APP_FIREBASE_STORAGE_BUCKET": "@firebase_storage_bucket",
+    "REACT_APP_FIREBASE_MESSAGING_SENDER_ID": "@firebase_messaging_sender_id",
+    "REACT_APP_FIREBASE_APP_ID": "@firebase_app_id",
+    "REACT_APP_IPFS_PROJECT_ID": "@ipfs_project_id",
+    "REACT_APP_IPFS_PROJECT_SECRET": "@ipfs_project_secret",
+    "REACT_APP_BASE_NETWORK_RPC_URL": "@base_network_rpc_url",
+    "REACT_APP_GENESIS_NFT_ADDRESS": "@genesis_nft_address",
+    "REACT_APP_AIKIRA_TOKEN_ADDRESS": "@aikira_token_address"
+  },
+  "github": {
+    "silent": true
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

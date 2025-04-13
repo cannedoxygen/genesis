@@ -1,0 +1,46 @@
+{
+    "short_name": "AIKIRA",
+    "name": "AIKIRA: GENESIS PROTOCOL",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "logo192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "logo512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#00eaff",
+    "background_color": "#0a1525",
+    "description": "A lore-driven, meme-powered browser game where players uncover dinosaur DNA hidden within an ancient AI-run system.",
+    "orientation": "landscape",
+    "categories": ["games", "entertainment", "web3"],
+    "screenshots": [
+      {
+        "src": "assets/images/screenshots/gameplay1.jpg",
+        "sizes": "1280x720",
+        "type": "image/jpeg"
+      },
+      {
+        "src": "assets/images/screenshots/gameplay2.jpg",
+        "sizes": "1280x720",
+        "type": "image/jpeg"
+      }
+    ],
+    "related_applications": [
+      {
+        "platform": "web",
+        "url": "https://aikira.io"
+      }
+    ]
+  }

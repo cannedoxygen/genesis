@@ -1,0 +1,467 @@
+/**
+ * AIKIRA: GENESIS PROTOCOL
+ * Main Stylesheet
+ * 
+ * This file provides styling for UI elements outside of the p5.js canvas,
+ * including wallet connection UI, loading screens, and external controls.
+ */
+
+/* ---------------- Reset & Base Styles ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Using Google's JetBrains Mono as a fallback font similar to pixeloid */
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ---------------- Canvas & Game Container ---------------- */
+#p5_loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#p5_loading img {
+  max-width: 300px;
+  margin-bottom: 30px;
+}
+
+#p5_loading .loading-bar {
+  width: 300px;
+  height: 10px;
+  background-color: #0a1525;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#p5_loading .loading-progress {
+  height: 100%;
+  background-color: #00eaff;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+#p5_loading .loading-text {
+  margin-top: 15px;
+  color: #00eaff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* ---------------- Wallet Connection UI ---------------- */
+#wallet-ui {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#wallet-connect {
+  background-color: rgba(0, 100, 150, 0.7);
+  color: #fff;
+  border: 2px solid #00eaff;
+  border-radius: 8px;
+  padding: 8px 15px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#wallet-connect:hover {
+  background-color: rgba(0, 150, 200, 0.9);
+  box-shadow: 0 0 10px #00eaff;
+}
+
+#wallet-connect:active {
+  transform: scale(0.98);
+}
+
+#wallet-address {
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #00ff99;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#wallet-address.hidden {
+  display: none;
+}
+
+/* ---------------- Modal Dialog ---------------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background-color: #0a1525;
+  border: 2px solid #00eaff;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 500px;
+  width: 80%;
+  color: #fff;
+  box-shadow: 0 0 30px rgba(0, 234, 255, 0.3);
+}
+
+.modal-title {
+  color: #00eaff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-body {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.modal-button {
+  background-color: rgba(0, 100, 150, 0.7);
+  color: #fff;
+  border: 2px solid #00eaff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.modal-button:hover {
+  background-color: rgba(0, 150, 200, 0.9);
+  box-shadow: 0 0 10px #00eaff;
+}
+
+.modal-button.secondary {
+  background-color: rgba(60, 60, 60, 0.7);
+  border-color: #aaa;
+}
+
+.modal-button.secondary:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+  box-shadow: 0 0 10px #aaa;
+}
+
+/* ---------------- Social Share UI ---------------- */
+#social-share {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  display: none;
+}
+
+#social-share.active {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.share-button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.share-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.share-button span {
+  margin-left: 8px;
+}
+
+/* Twitter share button */
+.share-button.twitter {
+  background-color: rgba(29, 161, 242, 0.3);
+  border-color: rgba(29, 161, 242, 0.5);
+}
+
+.share-button.twitter:hover {
+  background-color: rgba(29, 161, 242, 0.5);
+  border-color: rgba(29, 161, 242, 0.8);
+}
+
+/* ---------------- Audio Controls ---------------- */
+#audio-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+#audio-toggle {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#audio-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#audio-toggle.muted .unmuted-icon {
+  display: none;
+}
+
+#audio-toggle:not(.muted) .muted-icon {
+  display: none;
+}
+
+/* ---------------- Loading Indicators ---------------- */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 234, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #00eaff;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---------------- Tooltips ---------------- */
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------------- Responsive Adjustments ---------------- */
+@media (max-width: 768px) {
+  #wallet-ui {
+    top: 10px;
+    right: 10px;
+  }
+  
+  #wallet-connect {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    width: 90%;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+  }
+  
+  #social-share {
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  #audio-controls {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .share-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ---------------- Font Face ---------------- */
+/* Import Google Fonts instead of local fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* ---------------- Animation Effects ---------------- */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch 0.3s infinite;
+  animation-play-state: paused;
+}
+
+.glitch-text:hover {
+  animation-play-state: running;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 234, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 234, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 234, 255, 0);
+  }
+}
+
+/* ---------------- Base Network Specific Styling ---------------- */
+.base-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(0, 81, 255, 0.2);
+  border: 1px solid rgba(0, 81, 255, 0.5);
+  border-radius: 12px;
+  padding: 3px 8px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.base-badge:before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  /* Using a data URI for the Base logo icon instead of an image file */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%230052FF"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,7H13V13H17V15H11V7Z"/></svg>') no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+}
+
+/* Animation for Base Network transaction success */
+@keyframes base-success {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+.base-success {
+  animation: base-success 2s ease;
+}

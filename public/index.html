@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="AIKIRA: GENESIS PROTOCOL - A lore-driven, meme-powered browser game where players uncover dinosaur DNA hidden within an ancient AI-run system"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- p5.sound library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="AIKIRA: GENESIS PROTOCOL" />
+    <meta property="og:description" content="Decode the past. Uncover the DNA. Restore the Genesis Sequence." />
+    <meta property="og:image" content="%PUBLIC_URL%/assets/images/ui/social-preview.jpg" />
+    <meta property="og:url" content="https://aikira.io" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AIKIRA: GENESIS PROTOCOL" />
+    <meta name="twitter:description" content="A lore-driven, meme-powered browser game on Base Network with burnable NFT rewards." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/assets/images/ui/social-preview.jpg" />
+    
+    <!-- Base Network Integration -->
+    <script>
+      window.AIKIRA_CONFIG = {
+        tokenAddress: "0xa884C16a9379201D1E0156fF4C8A3B2C59b8d04C9A",
+        tokenReward: 5000,
+        baseChainId: 8453,
+        baseTestnetChainId: 84531
+      };
+    </script>
+    
+    <title>AIKIRA: GENESIS PROTOCOL</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="%PUBLIC_URL%/assets/images/ui/aikira-logo.png" as="image" />
+    
+    <!-- Minimal inline CSS for initial loading experience -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        background-color: #000;
+        color: #fff;
+        overflow: hidden;
+      }
+      
+      #root {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      #p5_loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      
+      #p5_loading img {
+        max-width: 300px;
+        margin-bottom: 30px;
+      }
+      
+      .loading-bar {
+        width: 300px;
+        height: 10px;
+        background-color: #0a1525;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      
+      .loading-progress {
+        height: 100%;
+        background-color: #00eaff;
+        width: 0%;
+        animation: progress 2s ease-in-out infinite alternate;
+      }
+      
+      .loading-text {
+        margin-top: 15px;
+        color: #00eaff;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      
+      @keyframes progress {
+        0% { width: 10%; }
+        100% { width: 90%; }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run AIKIRA: GENESIS PROTOCOL.</noscript>
+    <div id="root">
+      <!-- Initial loading state -->
+      <div id="p5_loading">
+        <img src="%PUBLIC_URL%/assets/images/ui/aikira-logo.png" alt="AIKIRA: Genesis Protocol" />
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+        <div class="loading-text">INITIALIZING GENESIS PROTOCOL</div>
+      </div>
+    </div>
+  </body>
+</html>
